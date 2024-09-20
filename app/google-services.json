@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1060826565611",
+    "firebase_url": "https://fut-maps-3839d-default-rtdb.firebaseio.com",
+    "project_id": "fut-maps-3839d",
+    "storage_bucket": "fut-maps-3839d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060826565611:android:76ef538fc5ce35cc4327ae",
+        "android_client_info": {
+          "package_name": "com.andyslab.futmaps"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATk0Io8R6KDMbvmWrQ0tGV2S2Ll9PC73I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
