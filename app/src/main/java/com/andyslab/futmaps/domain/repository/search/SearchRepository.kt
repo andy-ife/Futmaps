@@ -1,4 +1,4 @@
-package com.andyslab.futmaps.domain.repositories.search
+package com.andyslab.futmaps.domain.repository.search
 
 import com.andyslab.futmaps.domain.entities.FutLocation
 import com.andyslab.futmaps.utils.Resource

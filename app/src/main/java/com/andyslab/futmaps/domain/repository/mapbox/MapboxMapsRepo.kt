@@ -1,4 +1,4 @@
-package com.andyslab.futmaps.domain.repositories.mapbox
+package com.andyslab.futmaps.domain.repository.mapbox
 
 import android.graphics.Bitmap
 import com.andyslab.futmaps.domain.entities.FutLocation

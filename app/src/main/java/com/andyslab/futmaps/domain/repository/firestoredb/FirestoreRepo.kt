@@ -1,4 +1,4 @@
-package com.andyslab.futmaps.domain.repositories.firestoredb
+package com.andyslab.futmaps.domain.repository.firestoredb
 
 import com.andyslab.futmaps.domain.entities.FutLocation
 import com.andyslab.futmaps.utils.Resource

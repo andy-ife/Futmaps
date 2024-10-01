@@ -2,12 +2,11 @@ package com.andyslab.futmaps.ui.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.andyslab.futmaps.domain.entities.FutLocation
 import com.andyslab.futmaps.domain.entities.TripData
 import com.andyslab.futmaps.domain.entities.UserProfile
-import com.andyslab.futmaps.domain.repositories.firestoredb.FirestoreRepoImpl
-import com.andyslab.futmaps.domain.repositories.search.SearchRepoImpl
+import com.andyslab.futmaps.domain.repository.firestoredb.FirestoreRepoImpl
+import com.andyslab.futmaps.domain.repository.search.SearchRepoImpl
 import com.andyslab.futmaps.utils.Resource
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay

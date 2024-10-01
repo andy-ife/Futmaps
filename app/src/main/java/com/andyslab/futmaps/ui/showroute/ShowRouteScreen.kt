@@ -60,7 +60,7 @@ import com.andyslab.futmaps.data.NavigationTools.routesObserver
 import com.andyslab.futmaps.data.NavigationTools.tripProgressApi
 import com.andyslab.futmaps.data.NavigationTools.viewportDataSource
 import com.andyslab.futmaps.domain.entities.TripData
-import com.andyslab.futmaps.domain.repositories.mapbox.MapboxNavigationRepoImpl
+import com.andyslab.futmaps.domain.repository.mapbox.MapboxNavigationRepoImpl
 import com.andyslab.futmaps.ui.ErrorDialog
 import com.andyslab.futmaps.ui.LoadingDialog
 import com.andyslab.futmaps.ui.Screen

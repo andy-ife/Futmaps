@@ -7,8 +7,8 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.andyslab.futmaps.domain.entities.FutLocation
 import com.andyslab.futmaps.domain.entities.UserProfile
-import com.andyslab.futmaps.domain.repositories.firestoredb.FirestoreRepoImpl
-import com.andyslab.futmaps.domain.repositories.mapbox.MapboxMapsRepoImpl
+import com.andyslab.futmaps.domain.repository.firestoredb.FirestoreRepoImpl
+import com.andyslab.futmaps.domain.repository.mapbox.MapboxMapsRepoImpl
 import com.andyslab.futmaps.utils.Resource
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.mapbox.maps.MapView

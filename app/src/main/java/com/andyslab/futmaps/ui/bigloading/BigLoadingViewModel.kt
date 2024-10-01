@@ -3,7 +3,7 @@ package com.andyslab.futmaps.ui.bigloading
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.andyslab.futmaps.domain.entities.FutLocation
-import com.andyslab.futmaps.domain.repositories.firestoredb.FirestoreRepoImpl
+import com.andyslab.futmaps.domain.repository.firestoredb.FirestoreRepoImpl
 import com.andyslab.futmaps.utils.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

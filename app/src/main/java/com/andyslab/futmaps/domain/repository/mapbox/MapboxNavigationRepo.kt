@@ -1,4 +1,4 @@
-package com.andyslab.futmaps.domain.repositories.mapbox
+package com.andyslab.futmaps.domain.repository.mapbox
 
 import com.andyslab.futmaps.utils.Resource
 import com.mapbox.geojson.Point
@@ -7,12 +7,10 @@ import com.mapbox.maps.MapboxMap
 import com.mapbox.navigation.base.route.NavigationRoute
 import com.mapbox.navigation.core.MapboxNavigation
 import com.mapbox.navigation.core.directions.session.RoutesObserver
-import com.mapbox.navigation.core.lifecycle.MapboxNavigationApp
 import com.mapbox.navigation.core.trip.session.LocationObserver
 import com.mapbox.navigation.core.trip.session.RouteProgressObserver
 import com.mapbox.navigation.tripdata.progress.api.MapboxTripProgressApi
 import com.mapbox.navigation.tripdata.progress.model.TripProgressUpdateFormatter
-import com.mapbox.navigation.ui.components.tripprogress.view.MapboxTripProgressView
 import com.mapbox.navigation.ui.maps.camera.NavigationCamera
 import com.mapbox.navigation.ui.maps.camera.data.MapboxNavigationViewportDataSource
 import com.mapbox.navigation.ui.maps.location.NavigationLocationProvider

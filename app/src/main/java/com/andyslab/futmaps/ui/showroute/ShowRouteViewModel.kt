@@ -10,10 +10,9 @@ import com.andyslab.futmaps.data.NavigationTools.routeLineApi
 import com.andyslab.futmaps.data.NavigationTools.routeLineView
 import com.andyslab.futmaps.data.NavigationTools.routeProgressObserver
 import com.andyslab.futmaps.data.NavigationTools.routesObserver
-import com.andyslab.futmaps.domain.entities.TripData
 import com.andyslab.futmaps.domain.entities.UserProfile
-import com.andyslab.futmaps.domain.repositories.mapbox.MapboxMapsRepoImpl
-import com.andyslab.futmaps.domain.repositories.mapbox.MapboxNavigationRepoImpl
+import com.andyslab.futmaps.domain.repository.mapbox.MapboxMapsRepoImpl
+import com.andyslab.futmaps.domain.repository.mapbox.MapboxNavigationRepoImpl
 import com.mapbox.geojson.Point
 import com.mapbox.maps.MapView
 import com.mapbox.maps.MapboxMap
