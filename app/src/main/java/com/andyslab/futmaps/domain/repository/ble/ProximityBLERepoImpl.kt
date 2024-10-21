@@ -26,7 +26,7 @@ private const val DEVICE_NAME = "Dean's Office"
 private const val DEVICE_ADDRESS = "E4:65:B8:75:9B:C6"
 private const val SERVICE_UUID = "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
 private const val CHARACTERISTIC_UUID = "beb5483e-36e1-4688-b7f5-ea07361b26a8"
-private const val CCCD_DESCRIPTOR_UUID = "00002902-0000-1000-8000-00805f9b34fb"
+const val CCCD_DESCRIPTOR_UUID = "00002902-0000-1000-8000-00805f9b34fb"
 
 private const val MAX_CONNECTION_ATTEMPTS = 5
 
@@ -59,16 +59,18 @@ class ProximityBLERepoImpl(
 
     private val scanCallback = object: ScanCallback(){
         override fun onScanResult(callbackType: Int, result: ScanResult?) {
-            coroutineScope.launch{
-                proximityData.emit(Resource.Loading(
-                    message = "Device found: ${result?.device?.name}\n" +
-                            "${result?.device?.address}"
-                ))
-            }
+//            coroutineScope.launch{
+//                if(result?.device?.name != null){
+//                    proximityData.emit(Resource.Loading(
+//                        message = "Device found: ${result.device?.name}\n" +
+//                                "${result.device?.address}"
+//                    ))
+//                }
+//            }
             try{
             if(result?.device?.name == DEVICE_NAME || result?.device?.address == DEVICE_ADDRESS) {
                 coroutineScope.launch{
-                    proximityData.emit(Resource.Loading(message = "Device confirmed: ${result.device.name}..."))
+                    proximityData.emit(Resource.Loading(message = "Device found: ${result.device.name}..."))
                 }
                 proximityBleResult = ProximityBleResult(
                     result.device.name,
@@ -132,7 +134,7 @@ class ProximityBLERepoImpl(
 
         override fun onServicesDiscovered(gatt: BluetoothGatt, status: Int) {
             with(gatt){
-                //should print a gatt table here to get full list of services and characteristics
+                printGattTable()
                 coroutineScope.launch{
                     proximityData.emit(Resource.Loading(message = "Adjusting MTU space..."))
                 }
