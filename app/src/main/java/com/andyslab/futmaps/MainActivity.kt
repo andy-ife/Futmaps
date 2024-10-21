@@ -19,8 +19,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.observeOn
 
 @ColorInt
-val statusBarColor: Int = Color.parseColor("#80404040").toInt()
-val navigationBarColor: Int = Color.parseColor("#fff0f0f0").toInt()
+val statusBarColor: Int = Color.parseColor("#80404040")
+val navigationBarColor: Int = Color.parseColor("#fff0f0f0")
 
 
 class MainActivity : ComponentActivity() {

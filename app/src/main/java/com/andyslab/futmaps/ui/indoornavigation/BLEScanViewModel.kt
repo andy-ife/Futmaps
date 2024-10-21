@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class BLEScanViewModel(private val application: Application): AndroidViewModel(application) {
+class BLEScanViewModel(private val application: Application) : AndroidViewModel(application) {
     private val _bleScanState = MutableStateFlow<BleScanState?>(null)
     val bleScanState = _bleScanState.asStateFlow()
 
@@ -27,7 +27,8 @@ class BLEScanViewModel(private val application: Application): AndroidViewModel(a
     private val _visiblePermissionDialog = MutableStateFlow("")
     val visiblePermissionDialog = _visiblePermissionDialog.asStateFlow()
 
-    private val bluetoothManager = application.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
+    private val bluetoothManager =
+        application.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
     private val adapter = bluetoothManager.adapter
 
     private val bleRepo = ProximityBLERepoImpl(adapter, application.applicationContext)
@@ -46,31 +47,33 @@ class BLEScanViewModel(private val application: Application): AndroidViewModel(a
         }
     }
 
-    fun onDismissPermissionDialog(){
+    fun onDismissPermissionDialog() {
         _visiblePermissionDialog.value = ""
     }
 
-    fun onPermissionResult(permission: String, isGranted: Boolean){
-        if(!isGranted){
+    fun onPermissionResult(permission: String, isGranted: Boolean) {
+        if (!isGranted) {
             _visiblePermissionDialog.value = permission
         }
     }
 
-    private fun subscribeToProximityBleChanges(){
-        viewModelScope.launch{
-            bleRepo.proximityData.collect{ result ->
-                when(result){
+    private fun subscribeToProximityBleChanges() {
+        viewModelScope.launch {
+            bleRepo.proximityData.collect { result ->
+                when (result) {
                     is Resource.Error -> {
                         _bleScanState.value = BleScanState.Disconnected(result.message!!)
                     }
+
                     is Resource.Loading -> {
                         _bleScanState.value = BleScanState.Connecting(result.message!!)
                     }
+
                     is Resource.Success -> {
-                        if(result.data != null){
+                        if (result.data != null) {
                             _bleScanState.value = BleScanState.Connected(result.data)
                             _currentProximity.value = result.data.proximity!!
-                        }else{
+                        } else {
                             _bleScanState.value = BleScanState.Disconnected("Disconnected")
                         }
                     }
@@ -79,16 +82,16 @@ class BLEScanViewModel(private val application: Application): AndroidViewModel(a
         }
     }
 
-    fun initializeConnection(){
+    fun initializeConnection() {
         subscribeToProximityBleChanges()
         bleRepo.startReceiving()
     }
 
-    fun reconnect(){
+    fun reconnect() {
         bleRepo.reconnect()
     }
 
-    fun disconnect(){
+    fun disconnect() {
         _bleScanState.value = BleScanState.Disconnecting("Disconnecting...")
         bleRepo.disconnect()
         _bleScanState.value = BleScanState.Disconnected("Disconnected")
@@ -99,12 +102,12 @@ class BLEScanViewModel(private val application: Application): AndroidViewModel(a
         bleRepo.closeConnection()
     }
 
-    fun bluetoothIsEnabled(): Boolean{
+    fun bluetoothIsEnabled(): Boolean {
         return adapter.isEnabled
     }
 
-    fun fakeConnect(){
-        viewModelScope.launch{
+    fun fakeConnect() {
+        viewModelScope.launch {
             _bleScanState.value = BleScanState.Connecting("Scanning for bluetooth devices...")
             delay(7000)
             _bleScanState.value = BleScanState.Connecting("Connecting to device...")
@@ -116,14 +119,14 @@ class BLEScanViewModel(private val application: Application): AndroidViewModel(a
 
             _bleScanState.value = BleScanState.Connected(
                 ProximityBleResult(
-                "Dean's office", "Bluetooth LE Device", "17:15:33:04:DC:01", "2m"
-            )
+                    "Dean's office", "Bluetooth LE Device", "17:15:33:04:DC:01", "2m"
+                )
             )
 
         }
     }
 
-    fun fakeDisconnect(){
+    fun fakeDisconnect() {
         viewModelScope.launch {
             _bleScanState.value = BleScanState.Disconnecting("Disconnecting...")
             delay(500)
@@ -133,8 +136,8 @@ class BLEScanViewModel(private val application: Application): AndroidViewModel(a
 }
 
 sealed class BleScanState {
-    data class Connected(val data: ProximityBleResult): BleScanState()
-    data class Connecting(val message: String): BleScanState()
+    data class Connected(val data: ProximityBleResult) : BleScanState()
+    data class Connecting(val message: String) : BleScanState()
     data class Disconnected(val message: String) : BleScanState()
-    data class Disconnecting(val message: String): BleScanState()
+    data class Disconnecting(val message: String) : BleScanState()
 }
