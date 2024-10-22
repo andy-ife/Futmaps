@@ -78,7 +78,7 @@ class ProximityBLERepoImpl(
                     }
                     proximityBleResult = ProximityBleResult(
                         result.device.name,
-                        "Bluetooth Low Energy Beacon",
+                        "BLE Beacon", //shorter display name to improve ui
                         result.device.address,
                         null
                     )
@@ -166,7 +166,7 @@ class ProximityBLERepoImpl(
                     Resource.Success(
                         ProximityBleResult(
                             DEVICE_NAME,
-                            "Bluetooth Low Energy Beacon",
+                            "BLE Beacon", //shorter display name to improve ui
                             DEVICE_ADDRESS,
                             "${calculateDistance(rssi)}m"
                         )

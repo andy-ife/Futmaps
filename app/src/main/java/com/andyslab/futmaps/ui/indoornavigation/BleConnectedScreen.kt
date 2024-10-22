@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -84,12 +85,18 @@ fun BleConnectedScreen(
             ),
             border = BorderStroke(1.dp, Color.White)
         ) {
+            Column(horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.spacedBy(10.dp)){
             Row (modifier = Modifier
                 .fillMaxWidth()
                 .padding(10.dp),
-                horizontalArrangement = Arrangement.spacedBy(10.dp)){
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+                verticalAlignment = Alignment.CenterVertically){
                 Column {
-                    Card (shape = RoundedCornerShape(4.dp)){
+                    Card (shape = RoundedCornerShape(4.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = Color.White
+                        )){
                         Box(modifier = Modifier.padding(4.dp),
                             contentAlignment = Alignment.Center){
                             Icon(
@@ -132,28 +139,27 @@ fun BleConnectedScreen(
                             fontWeight = FontWeight.Bold,
                             color = Color.White
                         )
-
-                        Spacer(modifier = Modifier.height(40.dp))
-
-                            Card (
-                                shape = RoundedCornerShape(4.dp),
-                                colors = CardDefaults.cardColors(
-                                    containerColor = Color(0xFF388E3C)
-                                )
-                            ){
-                                Box(modifier = Modifier
-                                    .padding(horizontal = 10.dp, vertical = 4.dp)){
-                                    Text(text = "Connected",
-                                        fontFamily = FontFamily(Font(R.font.sourcesans3_regular)),
-                                        color = Color.White,
-                                        fontSize = 16.sp,
-                                    )
-                                }
-                            }
-                        }
+                    }
 
 
+                }
 
+                Card (
+                    modifier = Modifier.offset(x=-10.dp, y = -10.dp),
+                    shape = RoundedCornerShape(4.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color(0xFF388E3C)
+                    )
+                ){
+                    Box(modifier = Modifier
+                        .padding(horizontal = 10.dp, vertical = 4.dp)){
+                        Text(text = "Connected",
+                            fontFamily = FontFamily(Font(R.font.sourcesans3_regular)),
+                            color = Color.White,
+                            fontSize = 14.sp,
+                        )
+                    }
+                }
 
             }
         }
@@ -167,7 +173,7 @@ fun BleConnectedPreview(){
     BleConnectedScreen(
         device = ProximityBleResult(
             "Dean's Office",
-            "Bluetooth LE Beacon",
+            "BLE Beacon",
             "33:44:6A:FF:00:2B",
             "25m"
         ))
