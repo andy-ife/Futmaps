@@ -21,7 +21,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
+import java.util.Locale
 import java.util.UUID
+import kotlin.math.pow
 
 private const val DEVICE_NAME = "Dean's Office"
 private const val DEVICE_ADDRESS = "E4:65:B8:75:9B:C6"
@@ -150,12 +152,15 @@ class ProximityBLERepoImpl(
             }
         }
 
+        fun calculateDistance(rssi: Int, txPower: Int = -59, n: Double = 2.0): Double {
+            val distance = 10.0.pow((txPower - rssi) / (10 * n))
+            return String.format(Locale.getDefault(), "%.2f", distance).toDouble()
+        }
+
         override fun onReadRemoteRssi(gatt: BluetoothGatt?, rssi: Int, status: Int) {
             super.onReadRemoteRssi(gatt, rssi, status)
             // Handle the RSSI value here
             Log.d("RSSI", "RSSI: $rssi")
-            val distance = 1 * 10 xor ((-50 - rssi) / (10 * 2))
-            Log.d("RSSI", "Distance: $distance")
             coroutineScope.launch {
                 proximityData.emit(
                     Resource.Success(
@@ -163,7 +168,7 @@ class ProximityBLERepoImpl(
                             DEVICE_NAME,
                             "Bluetooth Low Energy Beacon",
                             DEVICE_ADDRESS,
-                            "${distance}m"
+                            "${calculateDistance(rssi)}m"
                         )
                     )
                 )
