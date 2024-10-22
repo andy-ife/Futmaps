@@ -179,6 +179,7 @@ class ProximityBLERepoImpl(
                 return
             }
             enableNotifications(characteristic)
+            startReadingRssi()
         }
 
         override fun onCharacteristicChanged(
@@ -200,6 +201,19 @@ class ProximityBLERepoImpl(
                     }
 
                     else -> Unit
+                }
+            }
+        }
+    }
+
+    fun startReadingRssi(){
+        coroutineScope.launch {
+            while(gatt != null){
+                try{
+                    gatt?.readRemoteRssi()
+                }catch(e: Exception){
+                    proximityData.emit(Resource.Error(message = "Error reading rssi value. Are you close enough to the beacon?"))
+                    break
                 }
             }
         }
@@ -277,8 +291,8 @@ class ProximityBLERepoImpl(
         if (characteristic != null) {
             disconnectCharacteristic(characteristic)
         }
-        gatt?.close()+
-
+        gatt?.close()
+        gatt = null
     }
 
     private fun disconnectCharacteristic(characteristic: BluetoothGattCharacteristic) {
